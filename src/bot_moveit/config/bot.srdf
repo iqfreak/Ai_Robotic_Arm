@@ -5,7 +5,7 @@
         <joint name="joint_1" />
         <joint name="joint_2" />
         <joint name="joint_3" />
-        <joint name="HATSC" />
+        <joint name="HATCS" />
 
     </group>
     <group name="gripper">
@@ -17,7 +17,7 @@
         <joint name="joint_1" value="0" />
         <joint name="joint_2" value="0" />
         <joint name="joint_3" value="0" />
-        <joint name="HATSC" value="0" />
+        <joint name="HATCS" value="0" />
 
     </group_state>
 
