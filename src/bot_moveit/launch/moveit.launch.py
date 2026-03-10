@@ -27,6 +27,10 @@ def generate_launch_description():
         .robot_description_semantic(file_path="config/bot.srdf")
         .robot_description_kinematics(file_path="config/kinematic_solver.yaml")
         .trajectory_execution(file_path="config/moveit_controllers.yaml")
+        .planning_pipelines(                          # ← THIS IS THE FIX
+            pipelines=["ompl", "pilz_industrial_motion_planner"],
+            default_planning_pipeline="ompl"
+        )
         .to_moveit_configs()
     )
 
@@ -40,7 +44,6 @@ def generate_launch_description():
         arguments=["--ros-args", "--log-level", "info"],
     )
 
-    # Robot State Publisher
     robot_state_publisher_node = Node(
         package="robot_state_publisher",
         executable="robot_state_publisher",
@@ -49,7 +52,6 @@ def generate_launch_description():
         parameters=[moveit_config.robot_description, {"use_sim_time": is_sim}],
     )
 
-    # RViz
     rviz_config = os.path.join(
         get_package_share_directory("bot_moveit"),
             "config",
