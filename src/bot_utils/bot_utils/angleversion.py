@@ -15,6 +15,7 @@ class angleversion(Node):
         self.get_logger().info("Service is ready to convert angles.")
     def euler_to_quaternion_callback(self, request, response):
         (response.x,response.y,response.z,response.w) =   quanternion = quaternion_from_euler(request.roll, request.pitch, request.yaw)
+        (response.x,response.y,response.z,response.w) = quaternion_from_euler(request.roll, request.pitch, request.yaw)
         self.get_logger().info("Incoming request: roll=%f, pitch=%f, yaw=%f. Sending back response: x=%f, y=%f, z=%f, w=%f" % (request.roll, request.pitch, request.yaw, response.x, response.y, response.z, response.w))        
         return response
     def quaternion_to_euler_callback(self, request, response):

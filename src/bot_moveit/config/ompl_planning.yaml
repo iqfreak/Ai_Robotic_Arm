@@ -1,0 +1,6 @@
+# ompl_planning.yaml
+gripper:
+  default_planner_config: RRTConnectkConfigDefault
+  planner_configs:
+    - RRTConnectkConfigDefault
+    - RRTstarkConfigDefault
