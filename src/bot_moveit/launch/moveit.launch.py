@@ -5,6 +5,7 @@ from launch_ros.actions import Node
 from launch.actions import DeclareLaunchArgument
 from launch.substitutions import LaunchConfiguration
 from ament_index_python.packages import get_package_share_directory
+from launch.actions import TimerAction
 
 
 def generate_launch_description():
@@ -71,12 +72,13 @@ def generate_launch_description():
             {"use_sim_time": is_sim},
         ],
     )
+    rviz_delayed = TimerAction(period=3.0, actions=[rviz_node])
 
     return LaunchDescription(
         [
             is_sim_arg,
             robot_state_publisher_node,
             move_group_node, 
-            rviz_node
+            rviz_delayed
         ]
     )
